@@ -1,0 +1,18 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - documentation
+      - duplicate
+      - invalid
+      - wontfix
+  categories:
+    - title: New Features / Improvements
+      labels:
+        - enhancement
+    - title: Bug Fixes
+      labels:
+        - bug
+    - title: Other Changes
+      labels:
+        - "*"

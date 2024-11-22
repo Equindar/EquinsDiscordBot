@@ -1,0 +1,47 @@
+name: Enhancement Template
+description: Request an enhancement or a new feature
+title: "Enhancement / New Feature"
+labels: ["enhancement"]
+projects: ["Equindar/2"]
+assignees:
+  - Equindar
+body:
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com, discord-ID
+    validations:
+      required: false
+  - type: textarea
+    id: background
+    attributes:
+      label: Background
+      description: Why the feature/workflow should be changed/introduced?
+    validations:
+      required: false
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: Brief description of the current workflow/result
+    validations:
+      required: false
+  - type: textarea
+    id: desired-behavior
+    attributes:
+      label: Expected behavior
+      description: Brief description of the new optimized workflow/result
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Boundaries
+      description: What will not be part of the enhancement
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/Equindar/LunarEclipse/blob/main/CODE_OF_CONDUCT.md)

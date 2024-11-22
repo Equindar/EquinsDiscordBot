@@ -1,0 +1,28 @@
+{
+  "name": "equinsdiscordbot",
+  "version": "1.0.0",
+  "description": "A discord bot, written in typescript",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Equindar/EquinsDiscordBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Equindar/EquinsDiscordBot/issues"
+  },
+  "homepage": "https://github.com/Equindar/EquinsDiscordBot#readme",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

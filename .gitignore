@@ -35,5 +35,6 @@ next-env.d.ts
 
 # --- enviroment files (*.local)
 .env*.local
+.env
 
 *storybook.log

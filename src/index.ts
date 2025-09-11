@@ -1,28 +1,43 @@
-import { Client } from 'discord.js';
-import { config } from './config';
-import { commands } from './commands';
-import { deployCommands } from './deploy-commands';
+import { Client, GatewayIntentBits, Collection } from "discord.js";
+import { loadEvents } from "./handlers/eventHandler";
+import { loadCommands } from "./handlers/commandHandler";
+import { Command } from "./types/Command";
+import dotenv from "dotenv";
 
-export const client = new Client({
-  intents: ['Guilds', 'GuildMessages', 'DirectMessages'],
-});
+// --- Init
+dotenv.config();
+const { DISCORD_TOKEN, DISCORD_CLIENT_ID } = process.env;
 
-client.once('ready', () => {
-  console.log('Discord bot is ready...');
-});
+if (!DISCORD_TOKEN || !DISCORD_CLIENT_ID) {
+  throw new Error('Missing enviroment variables');
+}
 
-client.on('guildCreate', async (guild) => {
-  await deployCommands({ guildId: guild.id });
-});
-
-client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isCommand()) {
-    return;
+declare module "discord.js" {
+  export interface Client {
+    commands: Collection<string, Command>;
   }
-  const { commandName } = interaction;
-  if (commands[commandName as keyof typeof commands]) {
-    commands[commandName as keyof typeof commands].execute(interaction);
-  }
+}
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 
-client.login(config.DISCORD_TOKEN);
+
+(async () => {
+  await loadEvents(client);
+  await loadCommands(client);
+  try {
+    await client.login(DISCORD_TOKEN);
+  }
+  catch (error) {
+    console.error(error);
+  }
+})();
+
+process.on('unhandledRejection', error => {
+  console.error('Unhandled promise rejection:', error);
+});

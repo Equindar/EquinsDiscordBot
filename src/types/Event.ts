@@ -1,7 +1,7 @@
-import { ClientEvents } from "discord.js";
+import { ClientEvents } from 'discord.js';
 
 export interface Event<K extends keyof ClientEvents> {
-    name: K;
-    once?: boolean;
-    execute: (...args: ClientEvents[K]) => void;
+  name: K;
+  once?: boolean;
+  execute: (...args: ClientEvents[K]) => void;
 }

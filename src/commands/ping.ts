@@ -1,13 +1,18 @@
-import { SlashCommandBuilder } from "discord.js";
-import { Command } from "../types/Command";
+import { SlashCommandBuilder } from 'discord.js';
+import { Command } from '../types/Command';
+import { errorHandler } from '..';
 
 const command: Command = {
-  data: new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("Antwortet mit Pong!"),
+  data: new SlashCommandBuilder().setName('ping').setDescription('Antwortet mit Pong!'),
 
   async execute(interaction) {
-    await interaction.reply("🏓 Pong!");
+    try {
+
+      await interaction.reply('🏓 Pong!');
+    }
+    catch (error) {
+      errorHandler.handle(error, "Fehler im Ping-Command");
+    }
   },
 };
 

@@ -2,6 +2,9 @@ import { Client, GatewayIntentBits, Collection } from "discord.js";
 import { loadEvents } from "./handlers/eventHandler";
 import { loadCommands } from "./handlers/commandHandler";
 import { Command } from "./types/Command";
+import { ErrorHandler } from "./handlers/errorHandler";
+import { ConsoleNotifier } from "./notifiers/ConsoleNotifier";
+import { DiscordNotifier } from "./notifiers/DiscordNotifier";
 import dotenv from "dotenv";
 
 // --- Init
@@ -26,6 +29,12 @@ const client = new Client({
   ],
 });
 
+// --- Error handling
+export const errorHandler = new ErrorHandler(
+  new ConsoleNotifier(),
+  new DiscordNotifier(client, process.env.ERROR_CHANNEL_ID!) // Channel-ID aus .env
+);
+
 
 (async () => {
   await loadEvents(client);
@@ -38,6 +47,11 @@ const client = new Client({
   }
 })();
 
-process.on('unhandledRejection', error => {
-  console.error('Unhandled promise rejection:', error);
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection:", reason);
 });
+
+process.on("uncaughtException", (error) => {
+  console.error("Uncaught Exception:", error);
+});
+

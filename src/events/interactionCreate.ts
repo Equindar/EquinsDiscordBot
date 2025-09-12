@@ -15,6 +15,11 @@ const event: Event<typeof Events.InteractionCreate> = {
     }
 
     try {
+      if (command.check) {
+        const allowed = await command.check(interaction as ChatInputCommandInteraction);
+        if (!allowed) return;
+      }
+
       await command.execute(interaction as ChatInputCommandInteraction);
     } catch (error) {
       console.error(error);

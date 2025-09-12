@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Collection } from "discord.js";
+import { Client, GatewayIntentBits, Collection, Partials } from "discord.js";
 import { loadEvents } from "./handlers/eventHandler";
 import { loadCommands } from "./handlers/commandHandler";
 import { Command } from "./types/Command";
@@ -26,7 +26,9 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions
   ],
+  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
 
 // --- Error handling

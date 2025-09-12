@@ -7,11 +7,9 @@ const command: Command = {
 
   async execute(interaction) {
     try {
-
       await interaction.reply('🏓 Pong!');
-    }
-    catch (error) {
-      errorHandler.handle(error, "Fehler im Ping-Command");
+    } catch (error) {
+      errorHandler.handle(error, 'Fehler im Ping-Command');
     }
   },
 };

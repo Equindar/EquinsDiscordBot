@@ -1,17 +1,17 @@
-import { MessageAnalyzer } from "../../types/MessageAnalyzer";
+import { MessageAnalyzer } from '../../types/MessageAnalyzer';
 
 const urlPrefix = /http:\/\/test/;
 const shareRegex = /\/share\/([A-Za-z0-9_-]+)/;
 
 export const shareAnalyzer: MessageAnalyzer = {
-    name: "shareAnalyzer",
-    analyze(message) {
-        const match = message.content.match(new RegExp(urlPrefix.source + shareRegex.source));
-        if (match) {
-            const shareId = match[1];
-            console.log(
-                `Share-Link gefunden in Guild "${message.guild?.name}" (${message.guildId}): ID = ${shareId}`
-            );
-        }
-    },
+  name: 'shareAnalyzer',
+  analyze(message) {
+    const match = message.content.match(new RegExp(urlPrefix.source + shareRegex.source));
+    if (match) {
+      const shareId = match[1];
+      console.log(
+        `Share-Link gefunden in Guild "${message.guild?.name}" (${message.guildId}): ID = ${shareId}`,
+      );
+    }
+  },
 };

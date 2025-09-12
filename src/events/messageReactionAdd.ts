@@ -1,10 +1,4 @@
-import {
-  Events,
-  MessageReaction,
-  PartialMessageReaction,
-  PartialUser,
-  User,
-} from 'discord.js';
+import { Events, MessageReaction, PartialMessageReaction, PartialUser, User } from 'discord.js';
 import { Event } from '../types/Event';
 import { errorHandler } from '../index';
 
@@ -23,12 +17,11 @@ const event: Event<typeof Events.MessageReactionAdd> = {
         // If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
         await reaction.fetch();
       }
-      if (reaction.emoji.name === "💩") {
-        console.log("💩 reaction detected");
+      if (reaction.emoji.name === '💩') {
+        console.log('💩 reaction detected');
       }
-    }
-    catch (error) {
-      await errorHandler.handle(error, "Fehler in MessageReactionAdd");
+    } catch (error) {
+      await errorHandler.handle(error, 'Fehler in MessageReactionAdd');
     }
   },
 };

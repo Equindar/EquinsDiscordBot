@@ -28,10 +28,17 @@ export async function loadCommands(client: Client) {
   try {
     console.log('Slash Commands werden registriert...');
 
-    await rest.put(
-      Routes.applicationCommands(process.env.DISCORD_CLIENT_ID!), // Global
-      { body: commands.map((cmd) => cmd.data.toJSON()) },
-    );
+    if (process.env.NODE_ENV === "production") {
+      await rest.put(
+        Routes.applicationCommands(process.env.DISCORD_CLIENT_ID!),
+        { body: commands.map(cmd => cmd.data.toJSON()) }
+      );
+    } else {
+      await rest.put(
+        Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID!, process.env.DISCORD_SERVER_ID!),
+        { body: commands.map(cmd => cmd.data.toJSON()) }
+      );
+    }
 
     console.log('Slash Commands erfolgreich registriert.');
   } catch (error) {

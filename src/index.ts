@@ -3,8 +3,8 @@ import { loadEvents } from "./handlers/eventHandler";
 import { loadCommands } from "./handlers/commandHandler";
 import { Command } from "./types/Command";
 import { ErrorHandler } from "./handlers/errorHandler";
-import { ConsoleNotifier } from "./notifiers/ConsoleNotifier";
-import { DiscordNotifier } from "./notifiers/DiscordNotifier";
+import { ConsoleNotifier } from "./addons/notifiers/ConsoleNotifier";
+import { DiscordNotifier } from "./addons/notifiers/DiscordNotifier";
 import dotenv from "dotenv";
 
 // --- Init
@@ -32,7 +32,7 @@ const client = new Client({
 // --- Error handling
 export const errorHandler = new ErrorHandler(
   new ConsoleNotifier(),
-  new DiscordNotifier(client, process.env.ERROR_CHANNEL_ID!) // Channel-ID aus .env
+  new DiscordNotifier(client, process.env.ERROR_CHANNEL_ID!)
 );
 
 

@@ -1,4 +1,4 @@
-import { Notifier } from "../types/Notifier";
+import { Notifier } from "../../types/Notifier";
 
 export class ConsoleNotifier implements Notifier {
     async notify(message: string, error?: unknown): Promise<void> {

@@ -9,7 +9,7 @@ const command: Command = {
     try {
       throw new Error('Testfehler 🚨');
     } catch (err) {
-      await errorHandler.handle(err, 'fail command');
+      await errorHandler.handle(err, this.data.name);
       await interaction.reply({ content: 'Es ist ein Fehler aufgetreten!', ephemeral: true });
     }
   },

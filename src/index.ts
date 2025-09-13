@@ -6,6 +6,7 @@ import { ErrorHandler } from './handlers/errorHandler';
 import { ConsoleNotifier } from './addons/notifiers/ConsoleNotifier';
 import { DiscordNotifier } from './addons/notifiers/DiscordNotifier';
 import dotenv from 'dotenv';
+import { logger } from './utils/logger';
 
 // --- Init
 dotenv.config();
@@ -43,7 +44,7 @@ export const errorHandler = new ErrorHandler(
   try {
     await client.login(DISCORD_TOKEN);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 })();
 

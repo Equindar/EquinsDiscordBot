@@ -1,4 +1,5 @@
 import { Notifier } from '../types/Notifier';
+import { logger } from '../utils/logger';
 
 export class ErrorHandler {
   private notifiers: Notifier[];
@@ -8,9 +9,13 @@ export class ErrorHandler {
   }
 
   async handle(error: unknown, context: string): Promise<void> {
-    const message = `Fehler in ${context}`;
+    const message = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
     for (const notifier of this.notifiers) {
       await notifier.notify(message, error);
     }
+
+    logger.error(`Fehler${context ? ` in ${context}` : ""}: ${message}`, {
+      stack: error instanceof Error ? error.stack : undefined,
+    });
   }
 }

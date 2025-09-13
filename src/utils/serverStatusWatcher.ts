@@ -1,4 +1,5 @@
 import { Client, TextChannel, EmbedBuilder } from 'discord.js';
+import { logger } from './logger';
 
 interface ServerStatusData {
     online: boolean;
@@ -43,7 +44,7 @@ export async function startServerStatusWatcher(client: Client) {
                         const msg = await channel.messages.fetch(statusMessageId);
                         await msg.edit({ embeds: [embed] });
                     } catch (err) {
-                        console.error('Konnte bestehende Status-Nachricht nicht updaten, sende neu:', err);
+                        logger.error('Konnte bestehende Status-Nachricht nicht updaten, sende neu:', err);
                     }
                 } else {
                     const newMsg = await channel.send({ embeds: [embed] });
@@ -51,7 +52,7 @@ export async function startServerStatusWatcher(client: Client) {
             }
             performance.push(data.latency)
         } catch (err) {
-            console.error('Fehler beim Abrufen des Serverstatus:', err);
+            logger.error('Fehler beim Abrufen des Serverstatus:', err);
         }
     }, 60_000); // alle 60 Sekunden
 }

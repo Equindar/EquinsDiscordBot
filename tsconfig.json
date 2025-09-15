@@ -5,9 +5,15 @@
     "moduleResolution": "node",
     // --- Paths
     /* Specify the root folder within your source files. */
-    "rootDir": "./src",
+    "rootDir": ".",
     /* Specify an output folder for all emitted files. */
     "outDir": "./build",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "esModuleInterop": true,
     /* Enable importing .json files. */
     "resolveJsonModule": true,
@@ -20,7 +26,8 @@
     "tsBuildInfoFile": "./build/cache/.tsbuildinfo",
   },
   "include": [
-    "src"
+    "src",
+    "test"
   ],
   "exclude": [
     "node_modules"
@@ -28,5 +35,5 @@
   "typeRoots": [
     "./node_modules/@types",
     "./node_modules/@discordjs/typings"
-  ]
+  ],
 }

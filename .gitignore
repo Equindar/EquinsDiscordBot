@@ -21,12 +21,6 @@ yarn-error.log*
 
 # --- production artifacts
 /build
-# vercel
-.vercel
-# next.js
-/.next/
-/out/
-next-env.d.ts
 
 # --- testing / coverage
 /coverage

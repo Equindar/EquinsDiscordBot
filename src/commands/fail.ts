@@ -8,9 +8,9 @@ const command: Command = {
   async execute(interaction) {
     try {
       throw new Error('Testfehler 🚨');
-    } catch (err) {
-      await errorHandler.handle(err, this.data.name);
-      await interaction.reply({ content: 'Es ist ein Fehler aufgetreten!', ephemeral: true });
+    } catch (error) {
+      await interaction.reply({ content: 'Es ist ein Fehler aufgetreten!' });
+      await errorHandler.handle(error, this.data.name);
     }
   },
 };

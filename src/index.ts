@@ -1,12 +1,12 @@
-import { Client, GatewayIntentBits, Collection, Partials } from 'discord.js';
 import { loadEvents } from './handlers/eventHandler';
 import { loadCommands } from './handlers/commandHandler';
-import { Command } from './types/Command';
 import { ErrorHandler } from './handlers/errorHandler';
-import { ConsoleNotifier } from './addons/notifiers/ConsoleNotifier';
 import { DiscordNotifier } from './addons/notifiers/DiscordNotifier';
 import dotenv from 'dotenv';
 import { logger } from './utils/logger';
+import createClient from './client';
+
+
 
 // --- Init
 dotenv.config();
@@ -16,25 +16,11 @@ if (!DISCORD_TOKEN || !DISCORD_CLIENT_ID) {
   throw new Error('Missing enviroment variables');
 }
 
-declare module 'discord.js' {
-  export interface Client {
-    commands: Collection<string, Command>;
-  }
-}
-
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMessageReactions,
-  ],
-  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
-});
+const client = createClient();
 
 // --- Error handling
 export const errorHandler = new ErrorHandler(
-  new ConsoleNotifier(),
+  // Init Notifiers
   new DiscordNotifier(client, process.env.ERROR_CHANNEL_ID!),
 );
 
@@ -44,7 +30,7 @@ export const errorHandler = new ErrorHandler(
   try {
     await client.login(DISCORD_TOKEN);
   } catch (error) {
-    logger.error(error);
+    logger.error("Login fehlgeschlagen: ", error);
   }
 })();
 

@@ -1,6 +1,7 @@
 import { Events, ChatInputCommandInteraction } from 'discord.js';
 import { Event } from '../types/Event';
 import { Command } from '../types/Command';
+import { logger } from '../utils/logger';
 
 const event: Event<typeof Events.InteractionCreate> = {
   name: Events.InteractionCreate,
@@ -10,8 +11,7 @@ const event: Event<typeof Events.InteractionCreate> = {
     const command = interaction.client.commands.get(interaction.commandName) as Command | undefined;
 
     if (!command) {
-      console.error(`Kein Command gefunden für: ${interaction.commandName}`);
-      return;
+      throw new Error(`Command '${interaction.commandName}' not found`);
     }
 
     try {
@@ -22,7 +22,6 @@ const event: Event<typeof Events.InteractionCreate> = {
 
       await command.execute(interaction as ChatInputCommandInteraction);
     } catch (error) {
-      console.error(error);
       if (interaction.deferred || interaction.replied) {
         await interaction.editReply('Beim Ausführen des Commands ist ein Fehler aufgetreten!');
       } else {

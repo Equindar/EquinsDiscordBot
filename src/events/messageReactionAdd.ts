@@ -1,6 +1,7 @@
 import { Events, MessageReaction, PartialMessageReaction, PartialUser, User } from 'discord.js';
 import { Event } from '../types/Event';
 import { errorHandler } from '../index';
+import { logger } from '../utils/logger';
 
 const event: Event<typeof Events.MessageReactionAdd> = {
   name: Events.MessageReactionAdd,
@@ -18,7 +19,7 @@ const event: Event<typeof Events.MessageReactionAdd> = {
         await reaction.fetch();
       }
       if (reaction.emoji.name === '💩') {
-        console.log('💩 reaction detected');
+        logger.debug('💩 reaction detected');
       }
     } catch (error) {
       await errorHandler.handle(error, 'Fehler in MessageReactionAdd');

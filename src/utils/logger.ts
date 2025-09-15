@@ -38,7 +38,7 @@ export const logger = createLogger({
             maxSize: "20m",
             maxFiles: "14d",
             format: format.combine(
-                format.timestamp(),
+                format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS A' }),
                 format.json(),
             ),
         }),
@@ -52,7 +52,7 @@ export const logger = createLogger({
             maxSize: "20m",
             maxFiles: "30d",
             format: format.combine(
-                format.timestamp(),
+                format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS A' }),
                 format.errors({ stack: true }),
                 format.json(),
             ),

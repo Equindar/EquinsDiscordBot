@@ -1,5 +1,6 @@
 import { ChatInputCommandInteraction } from 'discord.js';
 import { Command } from '../types/Command';
+import { logger } from './logger';
 
 export function isGuild(guildIdentifier: string) {
   return (command: Command): Command => ({
@@ -10,6 +11,7 @@ export function isGuild(guildIdentifier: string) {
           content: 'Dieser Command kann nur innerhalb eines Servers genutzt werden.',
           ephemeral: true,
         });
+        logger.warn(`Command ${command.data.name} darf nur auf einem Server genutzt werden.`);
         return;
       }
 
@@ -21,6 +23,7 @@ export function isGuild(guildIdentifier: string) {
           content: `Dieser Command ist server-spezifisch für **${guildIdentifier}**.`,
           ephemeral: true,
         });
+        logger.warn(`Command ${command.data.name} darf nur auf Server '${guildIdentifier}' genutzt werden.`);
         return;
       }
 

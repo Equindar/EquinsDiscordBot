@@ -3,17 +3,30 @@
     "target": "ES2022",
     "module": "CommonJS",
     "moduleResolution": "node",
+    // --- Paths
+    /* Specify the root folder within your source files. */
     "rootDir": "./src",
+    /* Specify an output folder for all emitted files. */
     "outDir": "./build",
     "esModuleInterop": true,
+    /* Enable importing .json files. */
     "resolveJsonModule": true,
     "strict": true,
     "skipLibCheck": true,
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    /* Specify the path to .tsbuildinfo incremental compilation file. */
+    "tsBuildInfoFile": "./build/cache/.tsbuildinfo",
   },
-  "include": ["src"],
-  "exclude": ["node_modules"],
-  "typeRoots": ["./node_modules/@types", "./node_modules/@discordjs/typings"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "typeRoots": [
+    "./node_modules/@types",
+    "./node_modules/@discordjs/typings"
+  ]
 }

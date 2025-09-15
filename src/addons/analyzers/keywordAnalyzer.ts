@@ -1,4 +1,5 @@
 import { MessageAnalyzer } from '../../types/MessageAnalyzer';
+import { logger } from '../../utils/logger';
 
 const keywords: string[] = ['hilfe', 'admin', 'server', 'offline'];
 
@@ -7,8 +8,8 @@ export const keywordAnalyzer: MessageAnalyzer = {
   analyze(message) {
     keywords.forEach((item) => {
       if (message.content.toLowerCase().includes(item)) {
-        console.log(
-          `Keyword '${item}' erkannt in Guild "${message.guild?.name}" (${message.guildId}) von User ${message.author.tag}`,
+        logger.debug(
+          `Keyword '${item}' erkannt in Server "${message.guild?.name}" (${message.guildId}) von User ${message.author.tag}`,
         );
       }
     });

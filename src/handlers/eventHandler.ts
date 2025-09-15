@@ -42,6 +42,6 @@ export async function loadEvents(client: Client) {
     }
     logger.info('Events erfolgreich geladen.');
   } catch (error) {
-    logger.error(error);
+    logger.error('Laden (Events): fehlgeschlagen: ', error);
   }
 }

@@ -1,6 +1,6 @@
 import { Notifier } from '../../types/Notifier';
 
-export class ConsoleNotifier implements Notifier {
+export class CustomNotifier implements Notifier {
   async notify(message: string, error?: unknown): Promise<void> {
     // console.error(`${message}`);
     // if (error instanceof Error) {

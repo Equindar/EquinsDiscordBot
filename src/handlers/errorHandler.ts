@@ -8,14 +8,12 @@ export class ErrorHandler {
     this.notifiers = notifiers;
   }
 
-  async handle(error: unknown, context: string): Promise<void> {
+  async handle(error: unknown, context?: string): Promise<void> {
     const message = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
     for (const notifier of this.notifiers) {
       await notifier.notify(message, error);
     }
 
-    logger.error(`Fehler${context ? ` in ${context}` : ""}: ${message}`, {
-      stack: error instanceof Error ? error.stack : undefined,
-    });
+    logger.error(`${context ? context : ""}${message} \n${error instanceof Error ? error.stack : undefined}`);
   }
 }

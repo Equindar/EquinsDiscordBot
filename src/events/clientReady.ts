@@ -15,7 +15,6 @@ const event: Event<typeof Events.ClientReady> = {
     });
 
     startServerStatusWatcher(client);
-
   },
 };
 

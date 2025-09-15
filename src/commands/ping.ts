@@ -9,7 +9,7 @@ const command: Command = {
     try {
       await interaction.reply('🏓 Pong!');
     } catch (error) {
-      errorHandler.handle(error, 'Fehler im Ping-Command');
+      errorHandler.handle(error, this.data.name);
     }
   },
 };

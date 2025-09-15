@@ -1,6 +1,7 @@
 import { Events, Message } from 'discord.js';
 import { Event } from '../types/Event';
 import { loadAnalyzers } from '../utils/analyzerLoader';
+import { logger } from '../utils/logger';
 
 const analyzers = loadAnalyzers();
 
@@ -14,12 +15,10 @@ const event: Event<typeof Events.MessageCreate> = {
     for (const analyzer of analyzers) {
       try {
         await analyzer.analyze(message);
-      } catch (err) {
-        console.error(`Fehler im Analyzer "${analyzer.name}":`, err);
+      } catch (error) {
+        logger.error(`Fehler im Analyzer "${analyzer.name}":`, error);
       }
     }
-
-    console.log(`${message.author.tag} schrieb: ${message.content}`);
   },
 };
 

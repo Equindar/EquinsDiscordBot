@@ -5,6 +5,8 @@ import { Command } from '../types/Command';
 import { logger } from '../utils/logger';
 
 
+
+
 export async function loadCommands(client: Client) {
   const commandsPath = path.join(__dirname, '..', 'commands');
   const commandFiles = readdirSync(commandsPath).filter(
@@ -44,6 +46,6 @@ export async function loadCommands(client: Client) {
 
     logger.info('Slash Commands erfolgreich registriert.');
   } catch (error) {
-    logger.error(error);
+    logger.error('Registrierung: fehlgeschlagen: ', error);
   }
 }

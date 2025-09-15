@@ -1,5 +1,6 @@
 import { ChatInputCommandInteraction } from 'discord.js';
 import { Command } from '../types/Command';
+import { logger } from './logger';
 
 export function hasRole(roleIdOrName: string) {
   return (command: Command): Command => ({
@@ -10,6 +11,7 @@ export function hasRole(roleIdOrName: string) {
           content: 'Dieser Command kann nur auf einem Server genutzt werden.',
           ephemeral: true,
         });
+        logger.warn(`Command ${command.data.name} darf nur auf einem Server genutzt werden.`);
         return;
       }
 
@@ -23,6 +25,7 @@ export function hasRole(roleIdOrName: string) {
           content: `Du benötigst die Rolle **${roleIdOrName}**, um diesen Command auszuführen.`,
           ephemeral: true,
         });
+        logger.warn(`Command ${command.data.name} darf nur von der Rolle '${roleIdOrName}' genutzt werden.`);
         return;
       }
 

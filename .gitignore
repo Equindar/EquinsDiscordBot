@@ -29,7 +29,8 @@ yarn-error.log*
 .DS_Store
 
 # --- enviroment files (*.local)
-.env*.local
 .env
+.env*.local
+.env.production
 
 *storybook.log

@@ -21,6 +21,9 @@ const config: Config = {
         "^@/(.*)$": "<rootDir>/src/$1",
     },
 
+    // Setup-Datei laden
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+
     // Coverage (optional)
     collectCoverage: true,
     coverageDirectory: 'coverage',

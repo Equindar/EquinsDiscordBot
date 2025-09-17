@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 import { readdirSync, statSync } from 'fs';
-import path from 'path';
+import path = require("path");
 import { Event } from '../types/Event';
 import { logger } from '../utils/logger';
 

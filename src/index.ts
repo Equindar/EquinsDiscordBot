@@ -2,7 +2,7 @@ import { loadEvents } from './handlers/eventHandler';
 import { loadCommands } from './handlers/commandHandler';
 import { ErrorHandler } from './handlers/errorHandler';
 import { DiscordNotifier } from './addons/notifiers/DiscordNotifier';
-import dotenv from 'dotenv';
+import dotenv = require('dotenv');
 import { logger } from './utils/logger';
 import createClient from './client';
 

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
+    "target": "es2022",
+    "module": "commonjs",
     "moduleResolution": "node",
     // --- Paths
     /* Specify the root folder within your source files. */
@@ -11,8 +11,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
-      ]
+        "./src/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ],
     },
     "esModuleInterop": true,
     /* Enable importing .json files. */
@@ -30,10 +33,12 @@
     "test"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "build"
   ],
   "typeRoots": [
     "./node_modules/@types",
-    "./node_modules/@discordjs/typings"
+    "./node_modules/@discordjs/typings",
+    "./src/types"
   ],
 }

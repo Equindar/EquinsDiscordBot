@@ -1,6 +1,6 @@
 import { Client, Collection, REST, Routes } from 'discord.js';
 import { readdirSync } from 'fs';
-import path from 'path';
+import path = require("path");
 import { Command } from '../types/Command';
 import { logger } from '../utils/logger';
 

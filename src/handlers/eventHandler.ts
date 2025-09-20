@@ -1,8 +1,9 @@
 import { Client } from 'discord.js';
 import { readdirSync, statSync } from 'fs';
-import path = require("path");
 import { Event } from '../types/Event';
 import { logger } from '../utils/logger';
+import path from 'path';
+
 
 function getEventFiles(dir: string): string[] {
   const files: string[] = [];
@@ -13,7 +14,7 @@ function getEventFiles(dir: string): string[] {
     const stats = statSync(fullPath);
 
     if (stats.isDirectory()) {
-      // 🔁 Rekursiver Aufruf für Unterordner
+      // Rekursiver Aufruf für Unterordner
       files.push(...getEventFiles(fullPath));
     } else if (item.endsWith('.ts') || item.endsWith('.js')) {
       files.push(fullPath);

@@ -2,7 +2,7 @@ name: Bug Report
 description: File a bug report
 title: 'Bug Report'
 labels: ['bug', 'triage']
-projects: ['Equindar/2']
+projects: []
 body:
   - type: markdown
     attributes:
@@ -41,6 +41,3 @@ body:
       label: Relevant log output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
       render: shell
-  - type: markdown
-    attributes:
-      value: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/Equindar/LunarEclipse/blob/main/CODE_OF_CONDUCT.md)
